@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&family=Lato:wght@300&family=Roboto+Mono:wght@400&family=Roboto:wght@300&display=swap');
+
+body {
+	max-width: 1080px;
+	margin: 0 auto !important;
+	float: none !important;
+    font-family: 'Roboto', sans-serif;
+}
+
+.code {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 300;
+}
