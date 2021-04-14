@@ -16,6 +16,7 @@
     <main class="flex-shrink-0">
     <div class="container">
         <h2 class="mt-5">OpenCore ScanPolicy Generator</h2>
+        <br>
         <form>
             <div class="form-group row align-items-center">
             <div class="col-3">
@@ -26,32 +27,40 @@
                 <label for="policyinHex">In Hex</label>
                 <input class="form-control" value="0" readonly="readonly" type="text" name="totalhex" id="policyinHex" />
             </div>
+
             </div>
         </form>
         <br>
         <p class="lead" style="font-size: medium;">Select the policies you want enabled from the list below: </p>
-        <input class="form-check-input" name="values" value="1" type="checkbox" onclick="totalIt()" /> <span class="code">0x00000001</span> (bit 0) - <span class="code">OC_SCAN_FILE_SYSTEM_LOCK</span>, restricts scanning to only known file systems defined as a part of this policy. File system drivers may not be aware of this policy. Hence, to avoid mounting of undesired file systems, drivers for such file systems should not be loaded. This bit does not affect DMG mounting, which may have any file system. Known file systems are prefixed with <span class="code">OC_SCAN_ALLOW_FS_</span>. <br>
-        <input class="form-check-input" name="values" value="2" type="checkbox" onclick="totalIt()" /> <span class="code">0x00000002</span> (bit 1) - <span class="code">OC_SCAN_DEVICE_LOCK</span>, restricts scanning to only known device types defined as a part of this policy. It is not always possible to detect protocol tunneling, so be aware that on some systems, it may be possible for e.g. USB HDDs to be recognised as SATA instead. Cases like this must be reported. Known device types are prefixed with <span class="code">OC_SCAN_ALLOW_DEVICE_</span> <br>
-        <input class="form-check-input" name="values" value="256" type="checkbox" onclick="totalIt()" /> <span class="code">0x00000100</span> (bit 8) - <span class="code">OC_SCAN_ALLOW_FS_APFS</span>, allows scanning of APFS file system. <br>
-        <input class="form-check-input" name="values" value="512" type="checkbox" onclick="totalIt()" /> <span class="code">0x00000200</span> (bit 9) - <span class="code">OC_SCAN_ALLOW_FS_HFS</span>, allows scanning of HFS file system. <br>
-        <input class="form-check-input" name="values" value="1024" type="checkbox" onclick="totalIt()" /> <span class="code">0x00000400</span> (bit 10) - <span class="code">OC_SCAN_ALLOW_FS_ESP</span>, allows scanning of EFI System Partition file system. <br>
-        <input class="form-check-input" name="values" value="2048" type="checkbox" onclick="totalIt()" /> <span class="code">0x00000800</span> (bit 11) - <span class="code">OC_SCAN_ALLOW_FS_NTFS</span>, allows scanning of NTFS (Msft Basic Data) file system <br>
-        <input class="form-check-input" name="values" value="4096" type="checkbox" onclick="totalIt()" /> <span class="code">0x00001000</span> (bit 12) - <span class="code">OC_SCAN_ALLOW_FS_EXT</span>, allows scanning of EXT (Linux Root) file system. <br>
-        <input class="form-check-input" name="values" value="65536" type="checkbox" onclick="totalIt()" /> <span class="code">0x00010000</span> (bit 16) - <span class="code">OC_SCAN_ALLOW_DEVICE_SATA</span>, allow scanning SATA devices. <br>
-        <input class="form-check-input" name="values" value="131072" type="checkbox" onclick="totalIt()" /> <span class="code">0x00020000</span> (bit 17) - <span class="code">OC_SCAN_ALLOW_DEVICE_SASEX</span>, allow scanning SAS and Mac NVMe devices. <br>
-        <input class="form-check-input" name="values" value="262144" type="checkbox" onclick="totalIt()" /> <span class="code">0x00040000</span> (bit 18) - <span class="code">OC_SCAN_ALLOW_DEVICE_SCSI</span>, allow scanning SCSI devices. <br>
-        <input class="form-check-input" name="values" value="524288" type="checkbox" onclick="totalIt()" /> <span class="code">0x00080000</span> (bit 19) - <span class="code">OC_SCAN_ALLOW_DEVICE_NVME</span>, allow scanning NVMe devices. <br>
-        <input class="form-check-input" name="values" value="1048576" type="checkbox" onclick="totalIt()" /> <span class="code">0x00100000</span> (bit 20) - <span class="code">OC_SCAN_ALLOW_DEVICE_ATAPI</span>, allow scanning CD/DVD devices and old SATA. <br>
-        <input class="form-check-input" name="values" value="2097152" type="checkbox" onclick="totalIt()" /> <span class="code">0x00200000</span> (bit 21) - <span class="code">OC_SCAN_ALLOW_DEVICE_USB</span>, allow scanning USB devices. <br>
-        <input class="form-check-input" name="values" value="4194304" type="checkbox" onclick="totalIt()" /> <span class="code">0x00400000</span> (bit 22) - <span class="code">OC_SCAN_ALLOW_DEVICE_FIREWIRE</span>, allow scanning FireWire devices. <br>
-        <input class="form-check-input" name="values" value="8388608" type="checkbox" onclick="totalIt()" /> <span class="code">0x00800000</span> (bit 23) - <span class="code">OC_SCAN_ALLOW_DEVICE_SDCARD</span>, allow scanning card reader devices. <br>
-        <input class="form-check-input" name="values" value="16777216" type="checkbox" onclick="totalIt()" /> <span class="code">0x01000000</span> (bit 24) - <span class="code">OC_SCAN_ALLOW_DEVICE_PCI</span>, allow scanning devices directly connected to PCI bus (e.g. VIRTIO). <br>
+        <input class="form-check-input" name="values" value="1" type="checkbox" onclick="totalIt()" id="bit0"/> <span class="code">0x00000001</span> (bit 0) - <span class="code">OC_SCAN_FILE_SYSTEM_LOCK</span>, restricts scanning to only known file systems defined as a part of this policy. File system drivers may not be aware of this policy. Hence, to avoid mounting of undesired file systems, drivers for such file systems should not be loaded. This bit does not affect DMG mounting, which may have any file system. Known file systems are prefixed with <span class="code">OC_SCAN_ALLOW_FS_</span>. <br>
+        <input class="form-check-input" name="values" value="2" type="checkbox" onclick="totalIt()" id="bit1" /> <span class="code">0x00000002</span> (bit 1) - <span class="code">OC_SCAN_DEVICE_LOCK</span>, restricts scanning to only known device types defined as a part of this policy. It is not always possible to detect protocol tunneling, so be aware that on some systems, it may be possible for e.g. USB HDDs to be recognised as SATA instead. Cases like this must be reported. Known device types are prefixed with <span class="code">OC_SCAN_ALLOW_DEVICE_</span> <br>
+        <input class="form-check-input" name="values" value="256" type="checkbox" onclick="totalIt()" id="bit8" /> <span class="code">0x00000100</span> (bit 8) - <span class="code">OC_SCAN_ALLOW_FS_APFS</span>, allows scanning of APFS file system. <br>
+        <input class="form-check-input" name="values" value="512" type="checkbox" onclick="totalIt()" id="bit9" /> <span class="code">0x00000200</span> (bit 9) - <span class="code">OC_SCAN_ALLOW_FS_HFS</span>, allows scanning of HFS file system. <br>
+        <input class="form-check-input" name="values" value="1024" type="checkbox" onclick="totalIt()" id="bit10" /> <span class="code">0x00000400</span> (bit 10) - <span class="code">OC_SCAN_ALLOW_FS_ESP</span>, allows scanning of EFI System Partition file system. <br>
+        <input class="form-check-input" name="values" value="2048" type="checkbox" onclick="totalIt()" id="bit11" /> <span class="code">0x00000800</span> (bit 11) - <span class="code">OC_SCAN_ALLOW_FS_NTFS</span>, allows scanning of NTFS (Msft Basic Data) file system <br>
+        <input class="form-check-input" name="values" value="4096" type="checkbox" onclick="totalIt()" id="bit12" /> <span class="code">0x00001000</span> (bit 12) - <span class="code">OC_SCAN_ALLOW_FS_EXT</span>, allows scanning of EXT (Linux Root) file system. <br>
+        <input class="form-check-input" name="values" value="65536" type="checkbox" onclick="totalIt()" id="bit16" /> <span class="code">0x00010000</span> (bit 16) - <span class="code">OC_SCAN_ALLOW_DEVICE_SATA</span>, allow scanning SATA devices. <br>
+        <input class="form-check-input" name="values" value="131072" type="checkbox" onclick="totalIt()" id="bit17" /> <span class="code">0x00020000</span> (bit 17) - <span class="code">OC_SCAN_ALLOW_DEVICE_SASEX</span>, allow scanning SAS and Mac NVMe devices. <br>
+        <input class="form-check-input" name="values" value="262144" type="checkbox" onclick="totalIt()" id="bit18" /> <span class="code">0x00040000</span> (bit 18) - <span class="code">OC_SCAN_ALLOW_DEVICE_SCSI</span>, allow scanning SCSI devices. <br>
+        <input class="form-check-input" name="values" value="524288" type="checkbox" onclick="totalIt()" id="bit19" /> <span class="code">0x00080000</span> (bit 19) - <span class="code">OC_SCAN_ALLOW_DEVICE_NVME</span>, allow scanning NVMe devices. <br>
+        <input class="form-check-input" name="values" value="1048576" type="checkbox" onclick="totalIt()" id="bit20" /> <span class="code">0x00100000</span> (bit 20) - <span class="code">OC_SCAN_ALLOW_DEVICE_ATAPI</span>, allow scanning CD/DVD devices and old SATA. <br>
+        <input class="form-check-input" name="values" value="2097152" type="checkbox" onclick="totalIt()" id="bit21" /> <span class="code">0x00200000</span> (bit 21) - <span class="code">OC_SCAN_ALLOW_DEVICE_USB</span>, allow scanning USB devices. <br>
+        <input class="form-check-input" name="values" value="4194304" type="checkbox" onclick="totalIt()" id="bit22" /> <span class="code">0x00400000</span> (bit 22) - <span class="code">OC_SCAN_ALLOW_DEVICE_FIREWIRE</span>, allow scanning FireWire devices. <br>
+        <input class="form-check-input" name="values" value="8388608" type="checkbox" onclick="totalIt()" id="bit23" /> <span class="code">0x00800000</span> (bit 23) - <span class="code">OC_SCAN_ALLOW_DEVICE_SDCARD</span>, allow scanning card reader devices. <br>
+        <input class="form-check-input" name="values" value="16777216" type="checkbox" onclick="totalIt()" id="bit24" /> <span class="code">0x01000000</span> (bit 24) - <span class="code">OC_SCAN_ALLOW_DEVICE_PCI</span>, allow scanning devices directly connected to PCI bus (e.g. VIRTIO). <br>
         <br>
         <br>
-        The information is taken directly from the <a href="https://dortania.github.io/docs/latest/Configuration.html#x1-460005">OpenCore Documentation</a>. Please let me know if there's any problem with it.
+        Templates
+        <br>
+        <button type="button" class="btn btn-outline-primary" onclick="defaultOC()">OpenCore Default</button>
+        <button type="button" class="btn btn-outline-primary" onclick="hideNtfs()">Hide all NTFS Drives</button>
+        <button type="button" class="btn btn-danger" onclick="clearAll()">Clear All</button>
+        <br>
+        <br>
+        The information is taken directly from the <a href="https://dortania.github.io/docs/latest/Configuration.html#x1-460005">OpenCore Documentation</a>. Please feel free to create an issue on <a href="https://github.com/i3p9/oc-scanpolicy">Github</a> with suggestions or problems.
         <br>
         <br>
     </div>
     </main>
-    </body>
-    </html>
+</body>
+</html>
