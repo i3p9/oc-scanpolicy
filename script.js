@@ -45,7 +45,7 @@ function clearAll() {
 
 function defaultOC() {
   clearAll();
-  let def = ["bit0", "bit1", "bit8", "bit16", "bit17", "bit18", "bit19"];
+  let def = ["bit0", "bit1", "bit8", "bit16", "bit17", "bit18", "bit19","bit24"];
   for (var i = 0; i < def.length; i++) {
     console.log(def[i]);
     document.getElementById(def[i]).checked = true;
