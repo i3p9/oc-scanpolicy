@@ -6,6 +6,8 @@ const allbits = [
   "bit10",
   "bit11",
   "bit12",
+  "bit13",
+  "bit14",
   "bit16",
   "bit17",
   "bit18",
